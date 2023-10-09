@@ -279,17 +279,17 @@ module box_bottom(inner_size, wall_width, holes_distance_to_border, holes_diamet
                   inner_size[1] - max_distance_to_border,
                   inner_size[2]],
                  center=true);
-            /*color("blue",1)
+            color("blue",1)
             translate([0,0,wall_width + pcb_height])
             cube([inner_size[0],
                   inner_size[1],
                   pcb_height*2],
-                 center=true);*/
+                 center=true);
         }
         
         // support through-hole pins
         pins_height = 10;
-        pins_height_1 = 1.5;
+        pins_height_1 = pcb_height+epsilon;
         pins_d1 = 4;
         pins_d2 = 2.5;      
 
@@ -323,7 +323,7 @@ holes_distance_to_border_pcb = 3.8;
 holes_diameter = 3.4;
 pcb_size = [86.7, 51.6, 1.5 ];
 //translate([100,100,100])
-pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
+//pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
 
 
 //difference()
