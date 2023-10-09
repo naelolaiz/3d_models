@@ -42,3 +42,23 @@ jobs:
           name: workspace_artifacts
           path: |
             ${{ github.workspace }}/*.png
+      - name: Generate HTML
+        run: |
+          echo "<html><body><table>" > index.html
+          echo "<tr>" > temp_row.html
+          for img in *.png; do
+            echo "<td><img src='$img' width='300'></td>" >> temp_row.html
+            if [ $(($(wc -l < temp_row.html) % 3)) -eq 0 ]; then
+              cat temp_row.html >> index.html
+              echo "</tr><tr>" > temp_row.html
+            fi
+          done
+          echo "</tr>" >> temp_row.html
+          cat temp_row.html >> index.html
+          echo "</table></body></html>" >> index.html
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Replace with your folder path
+
