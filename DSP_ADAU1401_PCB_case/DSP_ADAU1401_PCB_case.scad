@@ -329,7 +329,8 @@ module box_top(inner_size, wall_width, holes_distance_to_border, holes_diameter,
     new_holes_diameter = holes_diameter - epsilon;
     max_distance_to_border = wall_width + margin_xy + holes_distance_to_border + holes_diameter * 2;
     
-    rotate([0,180,0])
+    //rotate([0,180,0])
+    translate([0,0,inner_size[2]])
     translate([0,
                0,
                - wall_width - outer_size[2]/2 ])
@@ -443,10 +444,10 @@ pcb_size = [86.7, 51.6, 1.5 ];
     
     top_box_internal_size = [bottom_box_internal_size[0],
                              bottom_box_internal_size[1],
-                             80];
+                             25];
                              
-//translate([100,0,0])
+translate([100,0,0])
     color(["green",1])
     box_top(top_box_internal_size, wall_width, holes_distance_to_border_case_bottom, holes_diameter, margin_xy, pcb_size[2]);
-   //pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
+   pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
 //}
