@@ -1,19 +1,29 @@
 on: [push]
 
 jobs:
-  test_job:
+  render_scad_files:
     runs-on: ubuntu-latest
     container:
       image: bbassett/openscad
-    name: Test
+    name: render_scad_files
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: create stl files
         run: >
           for f in $(find . -name "*.scad"); do 
               openscad -o $(basename ${f//\.scad/.stl}) ${f};
-              openscad -o $(basename ${f//\.scad/.png}) ${f};
+          done
+        shell: bash
+      - name: Install xvfb
+        run: |
+          apt-get update
+          apt-get install -y xvfb
+      - name: create png files
+        run: >
+          for f in $(find . -name "*.scad"); do 
+              xvfb-run -a openscad -o $(basename ${f//\.scad/.png}) ${f};
           done
         shell: bash
       - name: Upload Build Artifacts
