@@ -8,4 +8,4 @@ jobs:
     name: Test
     steps:
       - name: test step
-        run: echo "hello world"
+        run: find . -name "*.scad" ; pwd
