@@ -16,18 +16,12 @@ jobs:
               openscad -o $(basename ${f//\.scad/.stl}) ${f};
           done
         shell: bash
-
-      #- name: Install curl (if not available)
-      #  run: |
-      #    apt-get update -q --allow-insecure-repositories
-      #    apt-get install -y curl
-
-      #- name: Manually add Debian GPG keys using curl
-      #  run: |
-      #    for key in 0E98404D386FA1D9 6ED0E7B82643E131 F8D2585B8783D481; do
-      #      curl -s "https://keyring.debian.org/pks/lookup?op=get&search=0x${key}" | apt-key add -
-      #    done
-
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: workspace_artifacts
+          path: |
+            ${{ github.workspace }}/*.stl
       - name: Update and install dependencies
         run: |
           sed -i -e 's/deb http:\/\/deb.debian.org\/debian stable main/deb http:\/\/deb.debian.org\/debian buster main/' \
@@ -48,4 +42,3 @@ jobs:
           name: workspace_artifacts
           path: |
             ${{ github.workspace }}/*.png
-            ${{ github.workspace }}/*.stl
