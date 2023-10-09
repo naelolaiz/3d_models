@@ -18,7 +18,8 @@ jobs:
         shell: bash
       - name: Install xvfb
         run: |
-          apt-get update
+          apt-get update -q
+          apt-get install -y software-properties-common
           apt-get install -y xvfb
       - name: create png files
         run: >
