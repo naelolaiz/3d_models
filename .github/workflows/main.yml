@@ -18,9 +18,8 @@ jobs:
         shell: bash
       - name: Install xvfb
         run: |
-          apt-get update -q
-          apt-get install -y software-properties-common
-          apt-get install -y xvfb
+          apt-get update -q --allow-insecure-repositories
+          apt-get install -y --allow-unauthenticated xvfb
       - name: create png files
         run: >
           for f in $(find . -name "*.scad"); do 
