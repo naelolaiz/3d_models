@@ -1,0 +1,9 @@
+on: [push]
+
+jobs:
+  test_jo:
+    runs-on: bbassett/openscad
+    name: Test
+    steps:
+      - name: test step
+        run: echo "hello world"
