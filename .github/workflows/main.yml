@@ -49,7 +49,7 @@ jobs:
           echo "<html><body><table>" > index.html
           echo "<tr>" > temp_row.html
           for img in *.png; do
-            echo "<td><img src='$img' width='300'></td>" >> temp_row.html
+            echo "<td><a href='${img//\.png/.stl}'><img src='$img' width='300'></a></td>" >> temp_row.html
             if [ $(($(wc -l < temp_row.html) % 3)) -eq 0 ]; then
               cat temp_row.html >> index.html
               echo "</tr><tr>" > temp_row.html
@@ -58,6 +58,7 @@ jobs:
           echo "</tr>" >> temp_row.html
           cat temp_row.html >> index.html
           echo "</table></body></html>" >> index.html
+        shell: bash
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
