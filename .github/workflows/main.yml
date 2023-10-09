@@ -12,8 +12,9 @@ jobs:
 
       - name: create stl files
         run: >
+          mkdir publish
           for f in $(find . -name "*.scad"); do 
-              openscad -o $(basename ${f//\.scad/.stl}) ${f};
+              openscad -o publish/$(basename ${f//\.scad/.stl}) ${f};
           done
         shell: bash
       - name: Upload Build Artifacts
@@ -21,7 +22,7 @@ jobs:
         with:
           name: workspace_artifacts
           path: |
-            ${{ github.workspace }}/*.stl
+            ${{ github.workspace }}/publish/*.stl
       - name: Update and install dependencies
         run: |
           sed -i -e 's/deb http:\/\/deb.debian.org\/debian stable main/deb http:\/\/deb.debian.org\/debian buster main/' \
@@ -33,7 +34,7 @@ jobs:
       - name: create png files
         run: >
           for f in $(find . -name "*.scad"); do 
-              xvfb-run -a openscad -o $(basename ${f//\.scad/.png}) ${f};
+              xvfb-run -a openscad -o publish/$(basename ${f//\.scad/.png}) ${f};
           done
         shell: bash
       - name: Upload Build Artifacts
@@ -41,11 +42,12 @@ jobs:
         with:
           name: workspace_artifacts
           path: |
-            ${{ github.workspace }}/*.png
+            ${{ github.workspace }}/publish/*.png
       - name: Generate HTML
         run: |
+          cd publish
           echo "<html><body><table>" > index.html
-          echo "<tr>" > temp_row.html
+          echo "<tr>" > publish/temp_row.html
           for img in *.png; do
             echo "<td><img src='$img' width='300'></td>" >> temp_row.html
             if [ $(($(wc -l < temp_row.html) % 3)) -eq 0 ]; then
@@ -60,4 +62,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./
+          folder: ./publish
