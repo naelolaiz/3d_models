@@ -47,7 +47,7 @@ jobs:
         run: |
           cd publish
           echo "<html><body><table>" > index.html
-          echo "<tr>" > publish/temp_row.html
+          echo "<tr>" > temp_row.html
           for img in *.png; do
             echo "<td><img src='$img' width='300'></td>" >> temp_row.html
             if [ $(($(wc -l < temp_row.html) % 3)) -eq 0 ]; then
