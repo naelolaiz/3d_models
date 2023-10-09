@@ -3,8 +3,8 @@ on: [push]
 jobs:
   test_job:
     runs-on: ubuntu-latest
-        container:
-          image: bbassett/openscad
+    container:
+      image: bbassett/openscad
     name: Test
     steps:
       - name: test step
