@@ -31,9 +31,9 @@ jobs:
       - name: Update and install dependencies
         run: |
           sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list
+          sed -i s/security.debian.org/archive.debian.org/g /etc/apt/sources.list
           apt-get update -q
           apt-get install -y xvfb      
-
       - name: create png files
         run: >
           for f in $(find . -name "*.scad"); do 
