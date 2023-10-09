@@ -8,4 +8,4 @@ jobs:
     name: Test
     steps:
       - name: test step
-        run: find . -name "*.scad" 
+        run: ls -lR
