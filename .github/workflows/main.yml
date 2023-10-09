@@ -1,8 +1,10 @@
 on: [push]
 
 jobs:
-  test_jo:
-    runs-on: bbassett/openscad
+  test_job:
+    runs-on: ubuntu-latest
+        container:
+          image: bbassett/openscad
     name: Test
     steps:
       - name: test step
