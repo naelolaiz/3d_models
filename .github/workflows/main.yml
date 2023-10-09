@@ -17,18 +17,21 @@ jobs:
           done
         shell: bash
 
-      - name: Add Debian GPG keys
+      - name: Install curl (if not available)
         run: |
-          apt-key adv --keyserver keyring.debian.org --recv-keys 0E98404D386FA1D9 6ED0E7B82643E131 F8D2585B8783D481
-  
-      - name: Fix or remove repositories
+          apt-get update -q --allow-insecure-repositories
+          apt-get install -y curl
+
+      - name: Manually add Debian GPG keys using curl
         run: |
-          sed -i '/security.debian.org/d' /etc/apt/sources.list
-  
+          for key in 0E98404D386FA1D9 6ED0E7B82643E131 F8D2585B8783D481; do
+            curl -s "https://keyring.debian.org/pks/lookup?op=get&search=0x${key}" | apt-key add -
+          done
+
       - name: Update and install dependencies
         run: |
           apt-get update -q
-          apt-get install -y xvfb
+          apt-get install -y xvfb      
 
       - name: create png files
         run: >
