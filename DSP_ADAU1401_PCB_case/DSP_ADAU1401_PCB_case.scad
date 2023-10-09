@@ -248,40 +248,43 @@ module support_pin(height_total, height_1, d1, d2)
 }
 
 
-module box_bottom(size, wall_width, holes_distance_to_border, holes_diameter, margin_xy, pcb_height)
+module box_bottom(inner_size, wall_width, holes_distance_to_border, holes_diameter, margin_xy, pcb_height)
 {
+    outer_size = [inner_size[0]+wall_width*2,
+                  inner_size[1]+wall_width*2,
+                  inner_size[2]];
     epsilon=0.2;
     new_holes_diameter = holes_diameter - epsilon;
-     
-    new_holes_distance_to_border = margin_xy + holes_distance_to_border + wall_width/2;
-    max_distance_to_border = new_holes_distance_to_border +  holes_diameter * 2;
+    max_distance_to_border = wall_width + margin_xy + holes_distance_to_border + holes_diameter * 2;
     translate([0,
                0,
-               size[2]/2 - pcb_size[2]])
+               outer_size[2]/2 - pcb_size[2]])
     union()
     {
         difference()
         {
+            // external cube
             color("blue",1)
-            cube(size, center=true);
+            cube(outer_size, center=true);
 
+            // internal cubes (hole)
             // do it twice keeping corners for the support of the PCB
             translate([0,0,wall_width])
-            cube([size[0] - max_distance_to_border,
-                  size[1] - wall_width,
-                  size[2]],
+            cube([inner_size[0] - max_distance_to_border,
+                  inner_size[1] ,
+                  inner_size[2]],
                  center=true);            
             translate([0,0,wall_width])
-            cube([size[0] - wall_width,
-                  size[1] - max_distance_to_border,
-                  size[2]],
+            cube([inner_size[0],
+                  inner_size[1] - max_distance_to_border,
+                  inner_size[2]],
                  center=true);
-            color("blue",1)
+            /*color("blue",1)
             translate([0,0,wall_width + pcb_height])
-            cube([size[0] - wall_width,
-                  size[1] - wall_width,
+            cube([inner_size[0],
+                  inner_size[1],
                   pcb_height*2],
-                 center=true);
+                 center=true);*/
         }
         
         // support through-hole pins
@@ -291,51 +294,52 @@ module box_bottom(size, wall_width, holes_distance_to_border, holes_diameter, ma
         pins_d2 = 2.5;      
 
         color("blue",1)
-        translate([size[0]/2 - new_holes_distance_to_border/2,
-                   size[1]/2 - new_holes_distance_to_border/2,
+        translate([inner_size[0]/2 - holes_distance_to_border,
+                   inner_size[1]/2 - holes_distance_to_border,
                    pins_height_1*2])
         support_pin(pins_height, pins_height_1, pins_d1, pins_d2);
         
         color("blue",1)
-        translate([new_holes_distance_to_border/2 - size[0]/2,
-                   size[1]/2 - new_holes_distance_to_border/2,
+        translate([holes_distance_to_border - inner_size[0]/2,
+                   inner_size[1]/2 - holes_distance_to_border,
                    pins_height_1*2])
         support_pin(pins_height, pins_height_1, pins_d1, pins_d2);
 
         color("blue",1)
-        translate([size[0]/2 - new_holes_distance_to_border/2,
-                   new_holes_distance_to_border/2 - size[1]/2,
+        translate([inner_size[0]/2 - holes_distance_to_border,
+                   holes_distance_to_border -inner_size[1]/2,
                    pins_height_1*2])
         support_pin(pins_height, pins_height_1, pins_d1, pins_d2);
 
         color("blue",1)
-        translate([new_holes_distance_to_border/2 - size[0]/2,
-                   new_holes_distance_to_border/2 - size[1]/2,
+        translate([holes_distance_to_border - inner_size[0]/2,
+                   holes_distance_to_border - inner_size[1]/2,
                    pins_height_1*2])
         support_pin(pins_height, pins_height_1, pins_d1, pins_d2);
     }
 }
 
-holes_distance_to_border_pcb = 4.5;
-holes_diameter = 3.3;
-pcb_size = [86.7, 51.5, 1.5 ];
-translate([100,100,100])
+holes_distance_to_border_pcb = 3.8;
+holes_diameter = 3.4;
+pcb_size = [86.7, 51.6, 1.5 ];
+//translate([100,100,100])
 pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
 
 
 //difference()
 //{
     //box_bottom([pcb_size[0]+3,pcb_size[1]+3,23]);
-    margin_xy = 3.5;
+    margin_xy = 4;
     wall_width = 2;
 
     holes_distance_to_border_case_bottom = holes_distance_to_border_pcb + margin_xy;
 
-    bottom_box_size = [pcb_size[0] + margin_xy,
-                       pcb_size[1] + margin_xy,
-                       6];
+    // external size = internal + wall_width * 2
+    bottom_box_internal_size = [pcb_size[0] + margin_xy*2,
+                                pcb_size[1] + margin_xy*2,
+                                6];
 
-    translate([0,0,pcb_size[2] - bottom_box_size[2]] )
-    box_bottom(bottom_box_size, wall_width, holes_distance_to_border_case_bottom, holes_diameter, margin_xy, pcb_size[2]);
+    translate([0,0,pcb_size[2] - bottom_box_internal_size[2]] )
+    box_bottom(bottom_box_internal_size, wall_width, holes_distance_to_border_case_bottom, holes_diameter, margin_xy, pcb_size[2]);
    //pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter);
 //}
