@@ -56,9 +56,8 @@ jobs:
           echo "</tr>" >> temp_row.html
           cat temp_row.html >> index.html
           echo "</table></body></html>" >> index.html
-      - name: Deploy 🚀
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Replace with your folder path
 
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./
