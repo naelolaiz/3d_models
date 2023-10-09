@@ -9,5 +9,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: test step
-        run: ls -lR
+      - name: create stl files
+        run: for f in $(find . -name "*.scad"); do openscad -o $(basename ${f//\.scad/.stl}) ${f}; done
