@@ -12,7 +12,7 @@ jobs:
 
       - name: create stl files
         run: >
-          mkdir publish
+          mkdir publish ;
           for f in $(find . -name "*.scad"); do 
               openscad -o publish/$(basename ${f//\.scad/.stl}) ${f};
           done
