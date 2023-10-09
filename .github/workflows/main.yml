@@ -7,5 +7,7 @@ jobs:
       image: bbassett/openscad
     name: Test
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: test step
         run: ls -lR
