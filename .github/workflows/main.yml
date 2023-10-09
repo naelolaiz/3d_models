@@ -10,4 +10,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: create stl files
-        run: for f in $(find . -name "*.scad"); do echo $f;  openscad -o $(basename ${f//\.scad/.stl}) ${f}; done
+        run: for f in $(find . -name "*.scad"); do echo openscad -o $(basename ${f//\\.scad/.stl}) ${f}; done
