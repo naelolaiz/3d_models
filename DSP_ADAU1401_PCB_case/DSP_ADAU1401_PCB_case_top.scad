@@ -7,7 +7,7 @@ module box_top_without_holes()
     holes_distance_to_border = holes_distance_to_border_pcb + margin_xy;
     outer_size = [top_box_internal_size[0]+wall_width*2,
                   top_box_internal_size[1]+wall_width*2,
-                  top_box_internal_size[2]+wall_width];
+                  top_box_internal_size[2]];//+wall_width];
     epsilon=0.4;
     new_holes_diameter = holes_diameter - epsilon;
     max_distance_to_border = wall_width + margin_xy + holes_distance_to_border + holes_diameter * 2;
