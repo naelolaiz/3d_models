@@ -13,8 +13,10 @@ jobs:
       - name: create stl files
         run: >
           mkdir publish ;
-          for f in $(find . -name "*.scad"); do 
-              openscad -o publish/$(basename ${f//\.scad/.stl}) ${f};
+          for f in $(find . -name "*.scad"); do
+               if [[ $(basename "$f") != "common.scad" ]]; then 
+                  openscad -o publish/$(basename ${f//\.scad/.stl}) ${f};
+               fi
           done
         shell: bash
       - name: Upload Build Artifacts
@@ -33,8 +35,10 @@ jobs:
           apt-get install -y xvfb rsync #rsync for deploy step on github pages
       - name: create png files
         run: >
-          for f in $(find . -name "*.scad"); do 
-              xvfb-run -a openscad -o publish/$(basename ${f//\.scad/.png}) ${f};
+          for f in $(find . -name "*.scad"); do
+              if [[ $(basename "$f") != "common.scad" ]]; then
+                  xvfb-run -a openscad -o publish/$(basename ${f//\.scad/.png}) ${f};
+              fi
           done
         shell: bash
       - name: Upload Build Artifacts
