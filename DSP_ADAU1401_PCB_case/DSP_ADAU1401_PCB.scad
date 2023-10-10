@@ -1,3 +1,5 @@
+include <common.scad>;
+
 module mini_momentary_switch(control_components_margin)
 {
      size = [3.9, 3, 2.1] + control_components_margin;
@@ -95,12 +97,8 @@ module daughter_pcb(pcb_daugther_size, control_components_margin)
 }
 
 
-module pcb(pcb_size, holes_distance_to_border, holes_diameter, control_components_margin) 
-{
-    //holes_distance_to_border = 4.5;
-    //holes_diameter = 3.3;    
-    epsilon = 0.2;
-   
+module pcb(control_components_margin) 
+{   
     $fn=100;
     union()
     {
@@ -111,23 +109,23 @@ module pcb(pcb_size, holes_distance_to_border, holes_diameter, control_component
         cube(pcb_size,center=true);
         
         // 4 corner holes
-        translate([pcb_size[0]/2 - holes_distance_to_border,
-                   pcb_size[1]/2 - holes_distance_to_border,
+        translate([pcb_size[0]/2 - holes_distance_to_border_pcb,
+                   pcb_size[1]/2 - holes_distance_to_border_pcb,
                    0])
         cylinder(h=pcb_size[2], d=holes_diameter, center=true);
         
-        translate([holes_distance_to_border - pcb_size[0]/2,
-                   holes_distance_to_border - pcb_size[1]/2,
+        translate([holes_distance_to_border_pcb - pcb_size[0]/2,
+                   holes_distance_to_border_pcb - pcb_size[1]/2,
                    0])
         cylinder(h=pcb_size[2], d=holes_diameter, center=true);
         
-        translate([pcb_size[0]/2 - holes_distance_to_border,
-                   holes_distance_to_border - pcb_size[1]/2,
+        translate([pcb_size[0]/2 - holes_distance_to_border_pcb,
+                   holes_distance_to_border_pcb - pcb_size[1]/2,
                    0])
         cylinder(h=pcb_size[2], d=holes_diameter, center=true);
         
-        translate([holes_distance_to_border - pcb_size[0]/2,
-                   pcb_size[1]/2 - holes_distance_to_border,
+        translate([holes_distance_to_border_pcb - pcb_size[0]/2,
+                   pcb_size[1]/2 - holes_distance_to_border_pcb,
                    0])
         cylinder(h=pcb_size[2], d=holes_diameter, center=true);
     }
@@ -234,7 +232,5 @@ module pcb(pcb_size, holes_distance_to_border, holes_diameter, control_component
     daughter_pcb(pcb_daugther_size,control_components_margin);
 }
 }
-holes_distance_to_border_pcb = 3.8;
-holes_diameter = 3.4;
-pcb_size = [86.7, 51.6, 1.5 ];
-pcb(pcb_size, holes_distance_to_border_pcb, holes_diameter, [0,0,0]);
+
+pcb([0,0,0]);
