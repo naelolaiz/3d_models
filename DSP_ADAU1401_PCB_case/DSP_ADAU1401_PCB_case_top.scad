@@ -84,6 +84,7 @@ module box_top()
         translate([0,0,top_box_internal_size[2]/2 + bottom_box_internal_size[2] + wall_width])
         box_top_without_holes();
         control_components_margin = [3,3,100];
+        translate([0,0,-wall_width-pcb_size[2]/2])
         pcb(control_components_margin);
     }
 }   
