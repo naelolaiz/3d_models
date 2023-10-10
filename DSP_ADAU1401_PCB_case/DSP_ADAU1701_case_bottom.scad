@@ -1,4 +1,4 @@
-use <DSP_ADAU1401_PCB.scad>;
+use <DSP_ADAU1701.scad>;
 include <common.scad>;
 
 module support_pin(height_total, height_1, d1, d2)

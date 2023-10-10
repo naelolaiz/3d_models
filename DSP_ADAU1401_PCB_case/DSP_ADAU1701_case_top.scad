@@ -1,5 +1,5 @@
-use <DSP_ADAU1401_PCB.scad>;
-use <DSP_ADAU1401_PCB_case_bottom.scad>;
+use <DSP_ADAU1701.scad>;
+use <DSP_ADAU1701_case_bottom.scad>;
 include <common.scad>;
 
 module box_top_without_holes()

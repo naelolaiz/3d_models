@@ -1,6 +1,6 @@
-use <DSP_ADAU1401_PCB.scad>;
-use <DSP_ADAU1401_PCB_case_bottom.scad>;
-use <DSP_ADAU1401_PCB_case_top.scad>;
+use <DSP_ADAU1701.scad>;
+use <DSP_ADAU1701_case_bottom.scad>;
+use <DSP_ADAU1701_case_top.scad>;
 include <common.scad>;
 //rotate([0,180,0])
 
