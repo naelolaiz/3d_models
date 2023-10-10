@@ -1,5 +1,5 @@
 # 3d_models
-.scad models renders (.png and .stl) automatically published in https://naelolaiz.github.io/3d_models/ by github actions.
+.scad models renders (.png and .stl) automatically published in https://naelolaiz.github.io/3d_models/ by [github actions](https://github.com/naelolaiz/3d_models/actions).
 
 # DSP_ADAU1401_PCB_case
 ## Bottom case. V2
