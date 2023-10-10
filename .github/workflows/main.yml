@@ -53,7 +53,7 @@ jobs:
           echo "<html><body><table>" > index.html
           echo "<tr>" > temp_row.html
           for img in *.png; do
-            echo "<td><a href='${img//\.png/.stl}'><img src='$img' width='300'></a></td>" >> temp_row.html
+            echo "<td><img src='$img' width='300'><br/><a href='${img}'>${img}</a> (<a href='${img//\.png/.stl}'>.stl</a>)</td>" >> temp_row.html
             if [ $(($(wc -l < temp_row.html) % 3)) -eq 0 ]; then
               cat temp_row.html >> index.html
               echo "</tr><tr>" > temp_row.html
