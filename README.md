@@ -3,5 +3,5 @@
 
 # DSP ADAU1701 + extension board case
 ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/1005002549648478.html)
-## Bottom case. V2
+## Bottom panel. V2
 ![Bottom case V2](DSP_ADAU1401_PCB_case/pictures/bottom_case_v2.jpg)
