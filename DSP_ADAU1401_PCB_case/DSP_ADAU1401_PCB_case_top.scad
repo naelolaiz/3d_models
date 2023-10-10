@@ -40,7 +40,9 @@ module box_top_without_holes()
             
             
             //color("blue",1)
-            /*translate([0,0, top_box_internal_size[2]/2])
+            
+            /*
+            translate([0,0, top_box_internal_size[2]/2])
             cube([top_box_internal_size[0],
                   top_box_internal_size[1],
                   pcb_height*2],
@@ -79,8 +81,9 @@ module box_top()
 {
     difference()
     {
+        translate([0,0,top_box_internal_size[2]/2 + bottom_box_internal_size[2] + wall_width])
         box_top_without_holes();
-        control_components_margin = [10,10,1000];
+        control_components_margin = [3,3,100];
         pcb(control_components_margin);
     }
 }   

@@ -131,7 +131,7 @@ module pcb(control_components_margin)
     }
     
     // add jacks
-    jack_size = [14, 6.3, 5.8];
+    jack_size = [14, 6.3, 5.8] + [control_components_margin[2], control_components_margin[0], control_components_margin[1]];
     jack_inner_length = 11.2;
         
     hpout01_jack_distance_to_border = 17;
@@ -162,10 +162,10 @@ module pcb(control_components_margin)
    
    // USB-C connector
     usbc_distance_to_border = 16.2;
-    usbc_size = [10, 6.8, 4.3];
+    usbc_size = [10, 6.8, 4.3] + [control_components_margin[2], control_components_margin[0], control_components_margin[1]];
     
     color("lightgray", 1)
-    translate([(usbc_size[0] - pcb_size[0])/2,
+    translate([(usbc_distance_to_border-usbc_size[0] - pcb_size[0])/2,
                pcb_size[1]/2 - usbc_distance_to_border,
               usbc_size[2]/2])
     cube(usbc_size, center=true);
