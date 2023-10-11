@@ -54,7 +54,7 @@ module box_bottom()
         // support through-hole pins
         pins_height = 10;
         pins_height_1 = pcb_size[2]+epsilon;
-        pins_d1 = 4;
+        pins_d1 = 2.85;
         pins_d2 = 2.5;      
 
         color("blue",1)

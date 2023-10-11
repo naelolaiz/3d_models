@@ -37,15 +37,12 @@ module box_top_without_holes()
                   top_box_internal_size[2]],
                  center=true);
             
-            
-            //color("blue",1)
-            
-            /*
+            // PCB size
             translate([0,0, top_box_internal_size[2]/2])
             cube([top_box_internal_size[0],
                   top_box_internal_size[1],
-                  pcb_height*2],
-                 center=true);*/
+                  pcb_size[2]*1.5],
+                 center=true);
         
         // support through-hole pins
         pins_height = 10;

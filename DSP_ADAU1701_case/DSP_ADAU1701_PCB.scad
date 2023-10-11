@@ -162,7 +162,7 @@ module pcb(control_components_margin)
    
    // USB-C connector
     usbc_distance_to_border = 16.2;
-    usbc_size = [10, 6.8, 4.3] + [control_components_margin[2], control_components_margin[0], control_components_margin[1]];
+    usbc_size = [10, 9.7, 4.3] + [control_components_margin[2], control_components_margin[0], control_components_margin[1]];
     
     color("lightgray", 1)
     translate([(usbc_distance_to_border-usbc_size[0] - pcb_size[0])/2,
@@ -225,7 +225,7 @@ module pcb(control_components_margin)
     header_1x6_pin(control_components_margin);
     
     pcb_daugther_size = [52 , 37.1, 1.5];
-    pcb_daugther_distance_to_border = [11.6, 9.5, 10.65];
+    pcb_daugther_distance_to_border = [11.6, 7.8, 10.65];
     translate([pcb_daugther_distance_to_border[0] - pcb_size[0]/2,
                pcb_size[1]/2 - pcb_daugther_distance_to_border[1],
                pcb_daugther_distance_to_border[2] + pcb_size[2]])
