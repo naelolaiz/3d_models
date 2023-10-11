@@ -13,4 +13,4 @@ bottom_box_internal_size = [pcb_size[0] + margin_xy*2,
                                       
 top_box_internal_size = [bottom_box_internal_size[0],
                          bottom_box_internal_size[1],
-                         25];
+                         23];
