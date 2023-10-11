@@ -6,7 +6,7 @@ ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/100500
 ## Bottom case. V2
 ![Bottom case V2](DSP_ADAU1701_case/pictures/bottom_case_v2.jpg)
 ## Top case. V1
-(fixed already in current models)
+(fixed already in current model)
 ![Top case V1 - top view](DSP_ADAU1701_case/pictures/top_case_v1_top_view.jpg)
 ![Top case V1 - side view](DSP_ADAU1701_case/pictures/top_case_v1_side_view.jpg)
 
