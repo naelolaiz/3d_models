@@ -1,4 +1,4 @@
-use <DSP_ADAU1701.scad>;
+use <DSP_ADAU1701_PCB.scad>;
 use <DSP_ADAU1701_case_bottom.scad>;
 include <common.scad>;
 
