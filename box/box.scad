@@ -69,9 +69,9 @@ module Box(size, wall_width=6)
                                                 [0,-tab_width/2, -size[2]/2 + tab_height + rounded_corner_radius]]);
         }
         // tab center
-        Tab (width=wall_width/3, positions= [[0,tab_width/2,size[2]/2 + rounded_corner_radius],
+        Tab (width=wall_width/3, positions= [[0,tab_width/2,size[2]/2],
                                             [0,tab_width/2,size[2]/2 + tab_height + rounded_corner_radius],
-                                            [0,-tab_width/2,size[2]/2 + rounded_corner_radius],
+                                            [0,-tab_width/2,size[2]/2],
                                             [0,-tab_width/2,size[2]/2+tab_height + rounded_corner_radius]]);
 
     }
