@@ -8,6 +8,11 @@ module Motor()
     motor_case_top_small_circle_height = 1.5;
     motor_case_bottom_small_circle_diameter = motor_case_top_small_circle_diameter;
     motor_case_bottom_small_circle_height = 2;
+    motor_diameter = 27.6;
+    motor_height = 37.7;
+    body_outer_shell_diameter = 28.8;
+    body_outer_shell_height = 20; 
+    body_outer_shell_distance_to_top = 4.4; // 24.4 - 20 = 4.4
     
     output_shaft_diameter = 2.5;
     output_shaft_height = 8;
@@ -16,8 +21,7 @@ module Motor()
     motor_cap_diameter = 7.1;
     motor_cap_gap = 1.3;
     motor_cap_height = output_shaft_height - motor_cap_gap;
-    motor_diameter = 27.6;
-    motor_height = 37.7;
+
     
     connectors_distance = 23.6;
     connectors_diameter=1.8;
@@ -28,6 +32,11 @@ module Motor()
     // main cylinder
     color("gray")
     cylinder (h=motor_height, d=motor_diameter,center=true);
+
+    // outer shell cylinder
+    translate([0,0,(motor_height-body_outer_shell_height)/2 - body_outer_shell_distance_to_top])
+    color("blue")
+    cylinder (h=body_outer_shell_height, d=body_outer_shell_diameter,center=true);
     
     // smaller cylinder on top and on bottom
     for(d_h_s= [[motor_case_top_small_circle_diameter, motor_case_top_small_circle_height, 1],[motor_case_bottom_small_circle_diameter,motor_case_bottom_small_circle_height, -1]]) 
