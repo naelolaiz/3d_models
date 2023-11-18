@@ -1,9 +1,9 @@
 //cube([200,150,35],center=true);
 //size = 40; // Size of the square
 //radius = 5; // Radius of the rounded corners
+rounded_corner_radius = 5;
 
-
-module RoundedCube(cube_size = [40,40,40], rounded_corner_radius = 5)
+module RoundedCube(cube_size = [40,40,40])//, rounded_corner_radius = 5)
 {
     $fn=50;
     half_cube_size = cube_size/2;
@@ -25,16 +25,53 @@ module RoundedCube(cube_size = [40,40,40], rounded_corner_radius = 5)
     }
 }
 
-module Box(size)
+
+
+module Tab(width, positions)
 {
-    wall_width=6;
-    difference() {
-    RoundedCube(cube_size=size);
-    s=[size[0]/2 - wall_width*2, size[1]-wall_width,size[2]];
-    translate([s[0]/2 + wall_width,0,wall_width])       
-    RoundedCube(cube_size=s);
-    translate([-s[0]/2 - wall_width,0,wall_width])       
-    RoundedCube(cube_size=s);
+    $fn=50;
+    hull() 
+    {
+        for (position=positions)
+        {
+            translate(position)
+            sphere(d=width);
+        }
+    }
+}
+    
+module Box(size, wall_width=6)
+{
+    tab_width = 35;
+    tab_height = 9;
+    tab_hole_tolerance = 0.7;
+    
+    union() 
+    {
+        difference() 
+        {
+            // main box
+            RoundedCube(cube_size=size);
+            s=[size[0]/2 - wall_width*2, size[1]-wall_width, size[2]];
+            
+            // half hole
+            translate([s[0]/2 + wall_width*1.2,0,wall_width])
+            RoundedCube(cube_size=s);
+            
+            // other half hole
+            translate([-s[0]/2 - wall_width*1.2,0,wall_width])       
+            RoundedCube(cube_size=s);
+            
+            // tab hole
+            Tab (width=tab_hole_tolerance + wall_width/3, positions= [[0,tab_width/2, -size[2]/2 - rounded_corner_radius],
+                                                [0,tab_width/2,  -size[2]/2 + tab_height + rounded_corner_radius],
+                                                [0,-tab_width/2, -size[2]/2 - rounded_corner_radius],
+                                                [0,-tab_width/2, -size[2]/2 + tab_height + rounded_corner_radius]]);
+        }
+        Tab (width=wall_width/3, positions= [[0,tab_width/2,size[2]/2 + rounded_corner_radius],
+                                            [0,tab_width/2,size[2]/2 + tab_height + rounded_corner_radius],
+                                            [0,-tab_width/2,size[2]/2 + rounded_corner_radius],
+                                            [0,-tab_width/2,size[2]/2+tab_height + rounded_corner_radius]]);
     }
 }
 
