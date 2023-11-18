@@ -62,16 +62,18 @@ module Box(size, wall_width=6)
             translate([-s[0]/2 - wall_width*1.2,0,wall_width])       
             RoundedCube(cube_size=s);
             
-            // tab hole
+            // tab hole center
             Tab (width=tab_hole_tolerance + wall_width/3, positions= [[0,tab_width/2, -size[2]/2 - rounded_corner_radius],
                                                 [0,tab_width/2,  -size[2]/2 + tab_height + rounded_corner_radius],
                                                 [0,-tab_width/2, -size[2]/2 - rounded_corner_radius],
                                                 [0,-tab_width/2, -size[2]/2 + tab_height + rounded_corner_radius]]);
         }
+        // tab center
         Tab (width=wall_width/3, positions= [[0,tab_width/2,size[2]/2 + rounded_corner_radius],
                                             [0,tab_width/2,size[2]/2 + tab_height + rounded_corner_radius],
                                             [0,-tab_width/2,size[2]/2 + rounded_corner_radius],
                                             [0,-tab_width/2,size[2]/2+tab_height + rounded_corner_radius]]);
+
     }
 }
 
