@@ -43,8 +43,8 @@ module Tab(width, positions)
 module Box(size, wall_width=6)
 {
     tab_width = 35;
-    tab_height = 9;
-    tab_hole_tolerance = 0.7;
+    tab_height = 17;
+    tab_hole_tolerance = 1.6;
     
     union() 
     {
@@ -64,9 +64,9 @@ module Box(size, wall_width=6)
             
             // tab hole center
             Tab (width=tab_hole_tolerance + wall_width/3, positions= [[0,tab_width/2, -size[2]/2 - rounded_corner_radius],
-                                                [0,tab_width/2,  -size[2]/2 + tab_height + rounded_corner_radius],
+                                                [0,tab_width/2,  -size[2]/2 + tab_height + rounded_corner_radius+tab_hole_tolerance],
                                                 [0,-tab_width/2, -size[2]/2 - rounded_corner_radius],
-                                                [0,-tab_width/2, -size[2]/2 + tab_height + rounded_corner_radius]]);
+                                                [0,-tab_width/2, -size[2]/2 + tab_height + rounded_corner_radius+tab_hole_tolerance]]);
         }
         // tab center
         Tab (width=wall_width/3, positions= [[0,tab_width/2,size[2]/2],
