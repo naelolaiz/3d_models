@@ -10,3 +10,8 @@ ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/100500
 ![Top case V1 - top view](DSP_ADAU1701_case/pictures/top_case_v1_top_view.jpg)
 ![Top case V1 - side view](DSP_ADAU1701_case/pictures/top_case_v1_side_view.jpg)
 
+# stackable box
+Stackable boxes (size 126.48,80.72,23.36 mm, divided in two)
+## V1
+![V1](box/pictures/2_boxes_v1.jpg)
+
