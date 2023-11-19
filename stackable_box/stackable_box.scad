@@ -39,7 +39,7 @@ module Tab(width, positions)
     }
 }
     
-module Box(size, wall_width=6)
+module StackableBox(size, wall_width=6)
 {
     tab_width = 35;
     tab_height = 17;
@@ -76,4 +76,4 @@ module Box(size, wall_width=6)
     }
 }
 scale(box_scale)
-Box([160,180,35]);
+StackableBox([160,180,35]);

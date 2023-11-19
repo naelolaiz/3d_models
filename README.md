@@ -13,5 +13,5 @@ ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/100500
 # stackable box
 Stackable boxes (size 126.48,80.72,23.36 mm, divided in two)
 ## V1
-![V1](box/pictures/2_boxes_v1.jpg)
+![V1](stackable_box/pictures/2_boxes_v1.jpg)
 
