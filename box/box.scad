@@ -1,6 +1,5 @@
-//cube([200,150,35],center=true);
-//size = 40; // Size of the square
-//radius = 5; // Radius of the rounded corners
+//box_final_size= 126.48, 80.72,23.36
+box_scale = [74.40, 42.49, 42.49];
 rounded_corner_radius = 5;
 
 module RoundedCube(cube_size = [40,40,40])//, rounded_corner_radius = 5)
@@ -76,5 +75,5 @@ module Box(size, wall_width=6)
 
     }
 }
-
+scale(box_scale)
 Box([160,180,35]);
