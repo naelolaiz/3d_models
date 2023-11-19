@@ -1,5 +1,5 @@
 //box_final_size= 126.48, 80.72,23.36
-box_scale = [74.40, 42.49, 42.49];
+box_scale = [0.7440, 0.4249, 0.4249];
 rounded_corner_radius = 5;
 
 module RoundedCube(cube_size = [40,40,40])//, rounded_corner_radius = 5)
