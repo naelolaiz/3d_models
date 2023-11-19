@@ -9,7 +9,7 @@ OpenSCAD 3D models
 # STL files 
 STL files and PNG thumbnails available in [https://naelolaiz.github.io/3d_models](https://naelolaiz.github.io/3d_models)
 ## Automatic publishing
-The STL and PNG renders are automatically published in [https://naelolaiz.github.io/3d_models](https://naelolaiz.github.io/3d_models) by [github actions](https://github.com/naelolaiz/3d_models/actions) (see [.github/woorkflows/main](.github/workflows/main) for more info).
+The STL and PNG renders are automatically published in [https://naelolaiz.github.io/3d_models](https://naelolaiz.github.io/3d_models) by [github actions](https://github.com/naelolaiz/3d_models/actions) (see [.github/woorkflows/main.yml](.github/workflows/main.yml) for more info).
 
 # DSP ADAU1701 + extension board case
 ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/1005002549648478.html)
