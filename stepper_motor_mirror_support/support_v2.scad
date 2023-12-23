@@ -45,9 +45,6 @@ polyhedron(points, faces);
 tolerance=0.4;
 
 
-
-
-translate([-20,-20,0])
 difference()
 {
     mirrorSupport(15);
@@ -59,7 +56,5 @@ difference()
     color("green")
     cylinder(h=7,d=diameter_screw,center=true);
     translate([0,0,3])
-    shaft(tolerance);
-
-    
+    shaft(tolerance);   
 }
