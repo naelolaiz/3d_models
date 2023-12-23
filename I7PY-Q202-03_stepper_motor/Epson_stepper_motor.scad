@@ -1,7 +1,7 @@
 use <I7PY-Q202-03.scad>
 module epson_stepper_motor_template()
 {
-    shaft_diameter = 7.5;
+    shaft_diameter = 25;
     shaft_height = 20;
 
     screw_hole_diameter = 3;
@@ -32,7 +32,7 @@ xy_plane_base_size = [i7py_motor_side + margin,
                       planes_height];
 
 xy_plane_support_epson_motor_size = [i7py_motor_side + margin,
-                                     epson_relative_height + epson_motor_outer_diameter/2,
+                                     epson_relative_height + epson_motor_outer_diameter/2+planes_height+1,
                                      planes_height+1];
 
 
