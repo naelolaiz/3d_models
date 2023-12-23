@@ -34,7 +34,6 @@ Project dir: [stackable_box](stackable_box)
 ## stepper motor 45 degree mirror support
 For a galvanometer. 
 To connect to a 5mm motor shaft.
-### V1
+### V1 and V2
 ![V1](https://naelolaiz.github.io/3d_models/support_v1.png)
-### V2
 ![V2](https://naelolaiz.github.io/3d_models/support_v2.png)
