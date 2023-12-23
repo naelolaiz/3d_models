@@ -45,6 +45,8 @@ module angled_cut()
 }
 
 
+
+rotate([90,0,0])
 union()
 {
     // Main model
