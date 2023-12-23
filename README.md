@@ -9,6 +9,7 @@ The STL and PNG are automatically rendered from the .scad files by [github actio
  - [12V DC Motor support](DC_Motor_support)
  - [DSP ADAU1701 case](#dsp-adau1701--extension-board-case)
  - [Stackable box](#stackable-box)
+ - [Stepper motor 45 degree mirror support](#stepper-motor-45-degree-mirror-support)
 
 ## DSP ADAU1701 + extension board case
 ADAU1701 + extension board PCB case (e.g.: https://es.aliexpress.com/item/1005002549648478.html)
@@ -30,3 +31,10 @@ Project dir: [stackable_box](stackable_box)
 ### V1
 ![V1](stackable_box/pictures/2_boxes_v1.jpg)
 
+## stepper motor 45 degree mirror support
+For a galvanometer. 
+To connect to a 5mm motor shaft.
+### V1
+![V1](https://naelolaiz.github.io/3d_models/support_v1.png)
+### V2
+![V2](https://naelolaiz.github.io/3d_models/support_v2.png)
