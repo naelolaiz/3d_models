@@ -44,6 +44,7 @@ polyhedron(points, faces);
 
 tolerance=0.4;
 
+color("gray")
 union()
 {
     difference()
