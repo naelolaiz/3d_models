@@ -51,7 +51,7 @@ union()
         diameter_screw = 3;
         distance_to_border=5;
         shaftSupport(tolerance);
-        translate([0,5,distance_to_border-height+diameter_screw/2])
+        translate([0,-5,distance_to_border-height+diameter_screw/2])
         rotate([90,0,0])
         color("green")
         cylinder(h=7,d=diameter_screw,center=true);
