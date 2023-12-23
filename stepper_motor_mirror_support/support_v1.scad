@@ -42,10 +42,10 @@ translate([-l/2,-l/2,0])
 polyhedron(points, faces);
 }
 
+tolerance=0.4;
 
 union()
 {
-    tolerance=0.4;
     difference()
     {
         diameter_screw = 3;
@@ -56,19 +56,9 @@ union()
         color("green")
         cylinder(h=7,d=diameter_screw,center=true);
         shaft(tolerance);
-    }
-    
-    //translate([0,0,-1])
+    }  
     mirrorSupport(15);
 }
-/*
-difference()
-{
-    mirrorSupport(15);
-    diameter_screw = 3;
-    distance_to_border=5;
-    //translate([0,5,distance_to_border-height+diameter_screw/2])
-    rotate([90,0,0])
-    color("green")
-    cylinder(h=7,d=diameter_screw,center=true);
-}*/
+
+
+
