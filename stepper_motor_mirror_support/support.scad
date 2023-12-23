@@ -27,14 +27,14 @@ points = [
     [0, l/2, sqrt(l*l/2)/sqrt(2) ], // Point 5
     [l, l/2, sqrt(l*l/2)/sqrt(2) ]  // Point 6
 ];
-
 faces = [
-    [0,1,2,3], // base for mirror
-    [0,1,4], //side triangle
-    [2,3,5], // side triangle
-    [1,2,5,4], 
-    [0,3,5,4]
+    [3, 2, 1, 0],  // Base, normal upwards
+    [0, 1, 4],     // Side triangle, normal outward
+    [1, 2, 5, 4],  //  Side face, normal outward
+    [2, 3, 5],     // Side triangle, normal outward
+    [4, 5, 3, 0],  //  Side face, normal outward
 ];
+
 
 translate([0,0,l/2/sqrt(2)])
 rotate([135,0,0])
@@ -42,22 +42,33 @@ translate([-l/2,-l/2,0])
 polyhedron(points, faces);
 }
 
-tolerance=0.4;
+
+union()
+{
+    tolerance=0.4;
+    difference()
+    {
+        diameter_screw = 3;
+        distance_to_border=5;
+        shaftSupport(tolerance);
+        translate([0,5,distance_to_border-height+diameter_screw/2])
+        rotate([90,0,0])
+        color("green")
+        cylinder(h=7,d=diameter_screw,center=true);
+        shaft(tolerance);
+    }
+    
+    //translate([0,0,-1])
+    mirrorSupport(15);
+}
+/*
 difference()
 {
-difference()
-{
-diameter_screw = 3;
-distance_to_border=5;
-shaftSupport(tolerance);
-translate([0,5,distance_to_border-height+diameter_screw/2])
-rotate([90,0,0])
-color("green")
-cylinder(h=7,d=diameter_screw,center=true);
-}
-    shaft(tolerance);
-}
-
-mirrorSupport(15);
-
-
+    mirrorSupport(15);
+    diameter_screw = 3;
+    distance_to_border=5;
+    //translate([0,5,distance_to_border-height+diameter_screw/2])
+    rotate([90,0,0])
+    color("green")
+    cylinder(h=7,d=diameter_screw,center=true);
+}*/
