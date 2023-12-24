@@ -50,7 +50,7 @@ union()
     difference()
     {
         diameter_screw = 3;
-        distance_to_border = 5;
+        distance_to_border = 3.5;
         shaftSupport(tolerance);
         translate([0,-5,distance_to_border-height+diameter_screw/2])
         rotate([90,0,0])
