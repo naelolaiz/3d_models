@@ -1,6 +1,6 @@
 $fn=70;
 
-diameter  = 5;
+diameter = 5;
 height=15;
 module shaft(tolerance)
 {
@@ -12,7 +12,7 @@ module shaft(tolerance)
 
 module shaftSupport(tolerance)
 {
-    diameter_support=4;    
+    diameter_support=6;
     translate([0,0,-height/2])
     cylinder(h=height,d=diameter+diameter_support+tolerance,center=true);
 }
@@ -50,7 +50,7 @@ union()
     difference()
     {
         diameter_screw = 3;
-        distance_to_border=5;
+        distance_to_border = 5;
         shaftSupport(tolerance);
         translate([0,-5,distance_to_border-height+diameter_screw/2])
         rotate([90,0,0])
@@ -58,7 +58,7 @@ union()
         cylinder(h=7,d=diameter_screw,center=true);
         shaft(tolerance);
     }  
-    mirrorSupport(15);
+    mirrorSupport(20);
 }
 
 

@@ -6,7 +6,7 @@ module I7PY_stepper_motor(extrude=false)
     height = 23.3;   // Height of the stepper motor
     cut_depth = 3; // Size of the angled cuts
     screws_holes_diameter = 3;
-    screws_holes_distance_side = 32;
+    screws_holes_distance_side = 31;
 
 
     module inner_circle_and_shaft()
