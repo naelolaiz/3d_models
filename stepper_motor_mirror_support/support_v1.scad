@@ -68,7 +68,6 @@ translate([-15,0,0])
 rotate([125,0,180])
 mirror_support_for_stepper_motor(shaft_diameter=5);
 
-
 translate([15,0,0])
 rotate([45,180,0])
 mirror_support_for_stepper_motor(shaft_diameter=7.4);

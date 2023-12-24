@@ -36,5 +36,4 @@ For a galvanometer.
 To connect to a 5mm motor shaft.
 
 Project dir: [stepper_motor_mirror_support](stepper_motor_mirror_support)
-### V1 and V2
-![V1](https://naelolaiz.github.io/3d_models/support_v1.png) ![V2](https://naelolaiz.github.io/3d_models/support_v2.png)
+![V1](https://naelolaiz.github.io/3d_models/support_v1.png)
