@@ -53,7 +53,7 @@ jobs:
           echo "<html><body><table>" > index.html
           echo "<tr>" > temp_row.html
           for img in *.png; do
-            source_file=$(find . -name ${img//\.png/.scad})
+            source_file=$(find .. -name ${img//\.png/.scad})
             echo "<td><img src='$img' width='300'><br/><a href='${img//\.png/.stl}'>${img//\.png/.stl}</a> ; <a href='${source_file}'>${source_file}</a></td>" >> temp_row.html
             if [ $(($(wc -l < temp_row.html) % 5)) -eq 0 ]; then
               cat temp_row.html >> index.html
