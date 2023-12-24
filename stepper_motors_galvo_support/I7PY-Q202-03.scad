@@ -96,4 +96,11 @@ module I7PY_stepper_motor(extrude=false)
         inner_circle_and_shaft();
     }
 }
+
+translate([-30,0,0])
+rotate([-15,0,0])
 I7PY_stepper_motor();
+
+translate([30,0,0])
+rotate([15,0,0])
+I7PY_stepper_motor(extrude=true);
