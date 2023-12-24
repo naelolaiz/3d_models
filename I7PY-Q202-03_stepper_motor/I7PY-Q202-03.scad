@@ -1,5 +1,6 @@
 module I7PY_stepper_motor(extrude=false)
 {
+    tolerance=1;
     length = 42;  // Length of the stepper motor
     width = 42;  // Width of the stepper motor
     height = 23.3;   // Height of the stepper motor
@@ -20,7 +21,7 @@ module I7PY_stepper_motor(extrude=false)
             {
                 difference()
                 {
-                    cylinder(h=ic_height, d=outer_diameter, center=true);
+                    cylinder(h=ic_height, d=outer_diameter+tolerance, center=true);
                     cylinder(h=ic_height, d=inner_diameter, center=true);
                 }
             }
