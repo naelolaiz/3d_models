@@ -35,8 +35,8 @@ Project dir: [stackable_box](stackable_box)
 For a galvanometer. 
 To connect to a 5mm motor shaft.
 
-Project dir: [stepper_motor_mirror_support](stepper_motor_mirror_support)
-![V1](https://naelolaiz.github.io/3d_models/support_v1.png)
+Project dir: [stepper_motor_mirror_support](stepper_motors_galvo_support/45_degree_angle_mirror_support)
+![V1](https://naelolaiz.github.io/3d_models/45_degree_angle_mirror_support.png)
 
 
 ## Stepper motors galvanometer
