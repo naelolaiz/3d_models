@@ -1,3 +1,4 @@
+// NEMA 17
 module I7PY_stepper_motor(extrude=false)
 {
     tolerance=1;
@@ -13,7 +14,9 @@ module I7PY_stepper_motor(extrude=false)
     {
         outer_diameter = 22;
         inner_diameter = extrude ? 5 : outer_diameter - 3.5;
-        ic_height = extrude ? 20 : 1.4;
+        shaft_diameter = 5;
+        shaft_height = 24;
+        ic_height = extrude ? shaft_height : 1.4;
 
         translate([0,(height+ic_height)/2,0])
         {
@@ -27,8 +30,6 @@ module I7PY_stepper_motor(extrude=false)
             }
         }
         
-        shaft_diameter = 5;
-        shaft_height = 25;
         translate([0,(height+shaft_height)/2,0])
         rotate([90,0,0])
         cylinder(h=shaft_height,d=shaft_diameter,$fn=50);
