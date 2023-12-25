@@ -5,7 +5,7 @@ include <common.scad>;
 epson_motor_relative_height = 26.5;
 
 planes_height=2;
-distance_to_side_stepper_motor = 66;
+distance_to_side_stepper_motor = 52.5;
 i7py_motor_side  = 42;
 margin = 8.5;
 i7py_motor_height = 23.3;
