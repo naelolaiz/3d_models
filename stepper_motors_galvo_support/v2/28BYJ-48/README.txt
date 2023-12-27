@@ -1,0 +1,1 @@
+Model stepper 28BYJ-48  by siderits on Thingiverse: https://www.thingiverse.com/thing:151379

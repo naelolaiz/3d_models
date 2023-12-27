@@ -2,7 +2,7 @@ $fn=70;
 module mirror_support_for_stepper_motor
 (   plane_side_length = 20,
     shaft_diameter = 5, 
-    shaft_height = 15,
+    shaft_height = 19.5,
     shaft_support_wall_size = 6,
     tolerance = 0.4
 )
@@ -51,7 +51,7 @@ module mirror_support_for_stepper_motor
         difference()
         {
             diameter_screw = 3;
-            distance_to_border = 3.5;
+            distance_to_border = 2.1;
             shaftSupport();
             translate([0,-5,distance_to_border-shaft_height+diameter_screw/2])
             rotate([90,0,0])
@@ -63,10 +63,19 @@ module mirror_support_for_stepper_motor
     }
 }
 
+/*
 translate([-15,0,0])
 rotate([125,0,180])
 mirror_support_for_stepper_motor(shaft_diameter=5);
+*/
+//translate([15,0,0])
+//rotate([45,180,0])
+difference()
+{
+mirror_support_for_stepper_motor(shaft_diameter=7.2);
 
-translate([15,0,0])
-rotate([45,180,0])
-mirror_support_for_stepper_motor(shaft_diameter=7.3);
+translate([0,8.2,15.2])
+sphere(d=30,$fn=200);
+}
+
+
