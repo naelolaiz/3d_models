@@ -1,29 +1,83 @@
-/*
-rotate([45,0,0])
-difference()
+use <28BYJ-48.scad>;
+use <circular_mirror_support_45_degree_support/circular_mirror_support_45_degree_support.scad>;
+
+module galvo_support_v2(tolerance = 0.2, wall_width = 4, show_components = false)
 {
-    sphere(d=30,$fn=300);
-    translate([0,0,30/2])
-    cube(30,center=true);    
-    
-}
-*/
-module circular_mirror_45_degree_support()
-{
-    base_diameter = 30;
-    base_small_diameter =5;
-    base_length = 10;
+    cube_external_size = [50, 84, 60];
+    cube_internal_size = cube_external_size - [-10, wall_width*2, wall_width*2];
     shaft_height = 20;
-    shaft_diameter = 8+3;
-    translate([0,0,shaft_height])
-    union()
+    lift_horizontal = 2;
+
+    position_horizontal_stepper_motor = [0,
+                                         13,
+                                         lift_horizontal-cube_internal_size[2]/2];
+                                         
+    position_vertical_stepper_motor = [0,-cube_internal_size[1]/2,0];
+
+
+    difference()
     {
-        rotate([45,0,0])
-        cylinder(h=base_length,d1=base_small_diameter,d2=base_diameter,center=true,$fn=100);
+        union()
+        {
+            difference()
+            {
+                // case
+                cube(cube_external_size,center=true);
+                cube(cube_internal_size,center=true);
+            }
+            // extra base
+            c_size = [cube_external_size[0],cube_internal_size[1]/2, lift_horizontal];
+            translate([0,c_size[1]/2,c_size[2]/2-cube_internal_size[2]/2])
+            cube(c_size,center=true);
+            
+            // extra base
+            base_height = 12.1;
+            translate([0,-cube_external_size[1]/4,- (cube_external_size[2] + base_height )/2])
+            cube([30,30,base_height],center=true);
+        }
+
         
-        translate([0,0,-shaft_height/2])
-        cylinder(h=shaft_height, d=shaft_diameter,center=true,$fn=100);
+        // stepper_motors
+        translate(position_horizontal_stepper_motor)
+        {
+            stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
+        }
+        
+        translate(position_vertical_stepper_motor)
+        {
+            rotate([-90,0,0])
+            {
+                stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
+            }
+        }
+        
+        // laser
+        laser_diameter = 6;
+        translate([0,position_horizontal_stepper_motor[1],20])
+        cylinder(h=10,d=laser_diameter + tolerance,$fn=100);
+    }
+    
+    if(show_components)
+    {
+    translate(position_horizontal_stepper_motor)
+    {
+        rotate ([0,0,90])  circular_mirror_support_45_degree_support();
+        stepper_motor_28BYJ_48(true,true);
+    }
+
+    translate(position_vertical_stepper_motor)
+    {
+        rotate([-90,0,0])
+        {
+            rotate ([0,0,90]) circular_mirror_support_45_degree_support();
+            stepper_motor_28BYJ_48(true,true);
+        }
     }
 }
+}
 
-circular_mirror_45_degree_support();
+translate([0,60,0])
+galvo_support_v2();
+
+translate([0,-60,0])
+galvo_support_v2(show_components=true);
