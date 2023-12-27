@@ -1,12 +1,12 @@
 use <28BYJ-48.scad>;
 use <circular_mirror_support_45_degree_support/circular_mirror_support_45_degree_support.scad>;
 
-module galvo_support_v2(tolerance = 0.2, wall_width = 4, show_components = false)
+module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = false)
 {
     cube_external_size = [50, 88, 60];
     cube_internal_size = cube_external_size - [-10, wall_width*2, wall_width*2];
     shaft_height = 20;
-    lift_horizontal = 2;
+    lift_horizontal = 3.5;
 
     position_horizontal_stepper_motor = [0,
                                          13,
@@ -31,7 +31,7 @@ module galvo_support_v2(tolerance = 0.2, wall_width = 4, show_components = false
             cube(c_size,center=true);
             
             // extra base
-            base_height = 12.1;
+            base_height = 11.5;
             translate([0,-cube_external_size[1]/4,- (cube_external_size[2] + base_height )/2])
             cube([30,30,base_height],center=true);
         }
