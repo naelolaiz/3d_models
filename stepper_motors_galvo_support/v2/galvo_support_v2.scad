@@ -76,6 +76,7 @@ module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = fal
 }
 }
 
+$vpr = [70, 0, 105];
 translate([0,60,0])
 galvo_support_v2();
 

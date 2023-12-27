@@ -29,10 +29,5 @@ module stepper_motor_28BYJ_48(include_big_axis_circle = true,  include_extra_pla
         cube([8,40,16+tolerance],center=true);
     }
 }
-stepper_motor_28BYJ_48(extrude_screws_and_cable=true);
-
-
-
-
-
+stepper_motor_28BYJ_48();
 
