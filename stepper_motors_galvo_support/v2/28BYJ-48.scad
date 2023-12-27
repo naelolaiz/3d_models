@@ -25,11 +25,11 @@ module stepper_motor_28BYJ_48(include_big_axis_circle = true,  include_extra_pla
             cylinder(h=extrusion_screw_length, d = extrusion_screw_diameter,$fn=50);
         }
         
-        translate([0,35,-2.5])
-        cube([8,30,1.5+tolerance],center=true);
+        translate([0,35,-8])
+        cube([8,40,16+tolerance],center=true);
     }
 }
-stepper_motor_28BYJ_48();
+stepper_motor_28BYJ_48(extrude_screws_and_cable=true);
 
 
 

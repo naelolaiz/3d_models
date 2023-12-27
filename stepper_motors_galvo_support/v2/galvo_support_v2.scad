@@ -3,7 +3,7 @@ use <circular_mirror_support_45_degree_support/circular_mirror_support_45_degree
 
 module galvo_support_v2(tolerance = 0.2, wall_width = 4, show_components = false)
 {
-    cube_external_size = [50, 84, 60];
+    cube_external_size = [50, 88, 60];
     cube_internal_size = cube_external_size - [-10, wall_width*2, wall_width*2];
     shaft_height = 20;
     lift_horizontal = 2;
