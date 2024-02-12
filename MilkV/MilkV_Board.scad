@@ -1,16 +1,5 @@
-pcb_size=[51.2,
-          21,
-          1];
+include <common.scad>;
 
-usb_connector_size=[8.8,
-                    7,
-                    1.2];
-
-SPI_connector_size = [12.3,
-                      2,
-                      4];
-
-tolerance = 0.3;
 
 body_depth = 1.7; // Depth of the connector body
 module header_male(pin_count, body_depth)
@@ -97,8 +86,7 @@ module micro_sd_reader_with_sd()
     }
 }
 
-
-module milkv_board(pcb_size, usb_connector_size, tolerance=0, extrude=false)
+module milkv_board(pcb_size, usb_connector_size, SPI_connector_size, tolerance=0, extrude=false)
 {
     // pcb
     pcb(pcb_size, "pink", tolerance);
@@ -108,12 +96,17 @@ module milkv_board(pcb_size, usb_connector_size, tolerance=0, extrude=false)
         usb_connector(usb_connector_size, "gray", tolerance, extrude);
     
     // spi connector
+    
+    extrusion_height=12;
     color("white")
-        translate([12.5+SPI_connector_size[1]/2-pcb_size[0]/2,0,0])
-            rotate([0,0,90])
-                cube(SPI_connector_size,center=true);
-    
-    
+        translate([12.5 + SPI_connector_size[1]/2-pcb_size[0]/2,
+                   0,
+                   2 + (extrude ? extrusion_height/2 : 0)])
+            rotate([0,
+                    0,
+                    90])
+                cube(SPI_connector_size + (extrude ? [0,0,extrusion_height] : [0,0,0]) ,center=true);
+   
     // pins
     translate([0,pcb_size[1]/2 -body_depth/2 ,0])
         header_male(20, body_depth);
@@ -132,4 +125,4 @@ module milkv_board(pcb_size, usb_connector_size, tolerance=0, extrude=false)
             cube(size=[9,9,1], center=true);
 }
 
-milkv_board(pcb_size, usb_connector_size, tolerance=tolerance, extrude=false);
+milkv_board(milkv_pcb_size, usb_connector_size, milkv_SPI_connector_size, tolerance=tolerance, extrude=false);

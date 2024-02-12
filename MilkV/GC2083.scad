@@ -17,7 +17,7 @@ module top_screw(diameter, height, tolerance=0)
 
 module pcb_holes(tolerance = 0)
 {
-    for ( pos =  [ [-pcb_holes_outside_distance[0]/2, pcb_holes_outside_distance[1]/2, -pcb_size[2]/2], [ pcb_holes_outside_distance[0]/2, -pcb_holes_outside_distance[1]/2, -pcb_size[2]/2 ] ] )
+    for ( pos =  [ [-pcb_holes_outside_distance[0]/2, pcb_holes_outside_distance[1]/2, -gc2083_pcb_size[2]/2], [ pcb_holes_outside_distance[0]/2, -pcb_holes_outside_distance[1]/2, -gc2083_pcb_size[2]/2 ] ] )
     {
         translate(pos)
         cylinder(h=holes_height, d=pcb_holes_outside_diameter+tolerance, center=true, $fn=50);  
@@ -34,7 +34,7 @@ module pcb(size, tolerance=0)
             // back plate
             translate([0, 0, -size[2]/2])
             {
-                cube(pcb_size, center=true);
+                cube(gc2083_pcb_size, center=true);
             }
             pcb_holes(tolerance=tolerance);
         }
@@ -42,7 +42,7 @@ module pcb(size, tolerance=0)
 }
 module holes_inside(tolerance = 0)
 {
-    for ( pos =  [ [-holes_inside_distance[0]/2, holes_inside_distance[1]/2, -pcb_size[2]/2], [ holes_inside_distance[0]/2, -holes_inside_distance[1]/2, -pcb_size[2]/2 ] ] )
+    for ( pos =  [ [-holes_inside_distance[0]/2, holes_inside_distance[1]/2, -gc2083_pcb_size[2]/2], [ holes_inside_distance[0]/2, -holes_inside_distance[1]/2, -gc2083_pcb_size[2]/2 ] ] )
     {
         translate(pos)
         cylinder(h=holes_height, d=holes_inside_diameter+tolerance, center=true, $fn=50);  
@@ -117,9 +117,9 @@ module top_box_and_screw(top_screw_height, top_screw_diameter, top_screw_box_siz
      }
 }
 
-module camera(extrude=false)
+module camera(extrude=false, tolerance=0)
 {
-    pcb(pcb_size,
+    pcb(gc2083_pcb_size,
         tolerance=tolerance);
 
     center_plate(center_plate_size=center_plate_size,
@@ -130,30 +130,29 @@ module camera(extrude=false)
                 lens_height=lens_height,
                 tolerance=tolerance);
   
-top_box_and_screw(top_screw_height=top_screw_height, top_screw_diameter=top_screw_diameter, top_screw_box_size=top_screw_box_size, top_screw_pos_z=top_screw_pos_z, lens_diameter=lens_diameter, tolerance=tolerance);
+    top_box_and_screw(top_screw_height=top_screw_height, top_screw_diameter=            top_screw_diameter, top_screw_box_size=top_screw_box_size, top_screw_pos_z=top_screw_pos_z, lens_diameter=lens_diameter, tolerance=tolerance);
     
     if (extrude)
     {   
         pcb_holes(tolerance=tolerance);
         holes_inside(tolerance=tolerance);
     }
-}
-
-module back(pcb_size, spi_connector_size, tolerance=0)
-{
-    color("white")
-        translate([0,
-                   spi_connector_size[1]/2 - pcb_size[1]/2-0.35,
-                   -pcb_size[2]-spi_connector_size[2]/2-tolerance/2])
-            cube(spi_connector_size+[tolerance,tolerance,tolerance],center=true);
     
-    for ( pos =  [ [holes_inside_distance[0]/2,0,-top_screw_height/2], [-holes_inside_distance[0]/2,0,-top_screw_height/2] ] )
-        color("gray")
-            translate(pos)
-                rotate([-90,0,0])
-                    top_screw(diameter=top_screw_diameter, height=top_screw_height, tolerance=tolerance);
+    module back(gc2083_pcb_size, spi_connector_size, tolerance=0)
+    {
+        color("white")
+            translate([0,
+                       spi_connector_size[1]/2 - gc2083_pcb_size[1]/2-0.35,
+                       -gc2083_pcb_size[2]-spi_connector_size[2]/2-tolerance/2])
+                cube(spi_connector_size+[tolerance,tolerance,tolerance],center=true);
+        
+        for ( pos =  [ [holes_inside_distance[0]/2,0,-top_screw_height/2], [-holes_inside_distance[0]/2,0,-top_screw_height/2] ] )
+            color("gray")
+                translate(pos)
+                    rotate([-90,0,0])
+                        top_screw(diameter=top_screw_diameter, height=top_screw_height, tolerance=tolerance);
+    }
+    back(gc2083_pcb_size=gc2083_pcb_size, spi_connector_size=spi_connector_size, tolerance=tolerance);
 }
 
-
-camera(extrude=false);
-back(pcb_size=pcb_size, spi_connector_size=spi_connector_size, tolerance=tolerance);
+camera(extrude=false, tolerance=tolerance);
