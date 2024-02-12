@@ -1,30 +1,8 @@
-tolerance = 0.30;
-
-pcb_size = [27,17,1];  // TODO: correct height
-
-
-holes_height = 30;
-pcb_holes_outside_distance = [20,13];
-pcb_holes_outside_diameter = 2.4;
-
-holes_inside_diameter = 1.7;
-holes_inside_distance = [20,0];
-
-center_plate_size = [16.25,16.25,3.5];
-lens_diameter = 16;
-lens_height = 23.5 - center_plate_size[2];
-
-top_screw_diameter = 3;
-top_screw_height = 1.5;
-
-top_screw_box_size=[0.7,6.5,3.5];
-top_screw_pos_z = 4.5-1+6.3-1.5;
-
-spi_connector_size = [12.3, 5.2, 1.8];
+include <common.scad>;
 
 module top_screw(diameter, height, tolerance=0)
 {
-    rotate([-90,0,0])    
+    rotate([-90,0,0])
         translate([0,0,height/2])
             difference()
             {
@@ -164,7 +142,9 @@ top_box_and_screw(top_screw_height=top_screw_height, top_screw_diameter=top_scre
 module back(pcb_size, spi_connector_size, tolerance=0)
 {
     color("white")
-        translate([0, spi_connector_size[1]/2 - pcb_size[1]/2, -pcb_size[2]-spi_connector_size[2]/2-tolerance/2])
+        translate([0,
+                   spi_connector_size[1]/2 - pcb_size[1]/2-0.35,
+                   -pcb_size[2]-spi_connector_size[2]/2-tolerance/2])
             cube(spi_connector_size+[tolerance,tolerance,tolerance],center=true);
     
     for ( pos =  [ [holes_inside_distance[0]/2,0,-top_screw_height/2], [-holes_inside_distance[0]/2,0,-top_screw_height/2] ] )
