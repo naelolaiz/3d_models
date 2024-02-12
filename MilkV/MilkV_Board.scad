@@ -69,23 +69,67 @@ module usb_connector(size, color, tolerance = 0, extrude=false)
     }
 }
 
+module micro_sd_reader_with_sd()
+{   
+    rotate([0,0,90])   
+    {
+        translate([-5.5,-8.3,0])
+        {
+            union()
+            {
+                color("orange")
+                    union()
+                    {
+                        cube([9.5,13,0.5]);
+                        cube([11,8,0.5]);
+                        cube([11,1.7,1.3]);
+                    }
+                    
+                color("gray")
+                {
+                    translate([-1, 8.3, 0])
+                    {
+                        cube([11,6,1]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 module milkv_board(pcb_size, usb_connector_size, tolerance=0, extrude=false)
 {
+    // pcb
     pcb(pcb_size, "pink", tolerance);
-    
+
+    // usb connector
     translate([usb_connector_size[0]/2-pcb_size[0]/2,0,0])
         usb_connector(usb_connector_size, "gray", tolerance, extrude);
     
-    
+    // spi connector
     color("white")
         translate([12.5+SPI_connector_size[1]/2-pcb_size[0]/2,0,0])
             rotate([0,0,90])
                 cube(SPI_connector_size,center=true);
     
+    
+    // pins
     translate([0,pcb_size[1]/2 -body_depth/2 ,0])
         header_male(20, body_depth);
     translate([0,body_depth/2-pcb_size[1]/2,0])
         header_male(20, body_depth);
+
+    // micro sd    
+    translate([15.5, 0, 0])
+        micro_sd_reader_with_sd();
+        
+        
+     // SoC
+     
+     color("black")
+        translate([1.6,0,0.5])
+            cube(size=[9,9,1], center=true);
 }
 
 milkv_board(pcb_size, usb_connector_size, tolerance=tolerance, extrude=false);
