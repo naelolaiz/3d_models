@@ -1,4 +1,4 @@
-tolerance = 0.30;
+tolerance = 0.5;
 
 // cam
 gc2083_pcb_size = [27,17,1];

@@ -96,8 +96,7 @@ module milkv_board(pcb_size, usb_connector_size, SPI_connector_size, tolerance=0
         usb_connector(usb_connector_size, "gray", tolerance, extrude);
     
     // spi connector
-    
-    extrusion_height=12;
+    extrusion_height=3;
     color("white")
         translate([12.5 + SPI_connector_size[1]/2-pcb_size[0]/2,
                    0,

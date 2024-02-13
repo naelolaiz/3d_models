@@ -134,7 +134,7 @@ module camera(extrude=false, tolerance=0)
     
     if (extrude)
     {   
-        pcb_holes(tolerance=tolerance);
+        //pcb_holes(tolerance=tolerance);
         holes_inside(tolerance=tolerance);
     }
     
