@@ -3,7 +3,7 @@ use <circular_mirror_support_45_degree_support/circular_mirror_support_45_degree
 
 module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = false)
 {
-    cube_external_size = [50, 88, 60];
+    cube_external_size = [50, 96.5, 60];
     cube_internal_size = cube_external_size - [-10, wall_width*2, wall_width*2];
     shaft_height = 20;
     lift_horizontal = 3.5;
@@ -31,7 +31,7 @@ module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = fal
             cube(c_size,center=true);
             
             // extra base
-            base_height = 11.5;
+            base_height = 11.35;
             translate([0,-cube_external_size[1]/4,- (cube_external_size[2] + base_height )/2])
             cube([30,30,base_height],center=true);
         }
@@ -40,14 +40,17 @@ module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = fal
         // stepper_motors
         translate(position_horizontal_stepper_motor)
         {
-            stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
+            
+            extruded_motor(tolerance);
+            //stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
         }
         
         translate(position_vertical_stepper_motor)
         {
             rotate([-90,0,0])
             {
-                stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
+                extruded_motor(tolerance);
+                //stepper_motor_28BYJ_48(true, true, true, tolerance=tolerance);
             }
         }
         
@@ -76,9 +79,10 @@ module galvo_support_v2(tolerance = 0.2, wall_width = 2.5, show_components = fal
 }
 }
 
-$vpr = [70, 0, 105];
+//$vpr = [70, 0, 105];
 translate([0,60,0])
 galvo_support_v2();
-
+/*
 translate([0,-60,0])
 galvo_support_v2(show_components=true);
+*/

@@ -1,17 +1,15 @@
 ruler_width = 40;
 ruler_length = 7;
 original_ruler_height = 5;
-steps = 8;
+steps = 5;
+large_vs_short_tich_ratio = 2/7;
 
 module plane_ruler(ruler_width,
                    ruler_length,
                    ruler_height)
 {
-
-    large_tick_length=ruler_length;
-    short_tick_length=ruler_length-2;
-
-    module tick(tick_length, tick_cube_side_length = 0.2)
+    module tick(tick_length,
+                tick_cube_side_length = 0.33)
     {
         rotate([90,0,0])
             rotate([0,0,45])
@@ -28,9 +26,7 @@ module plane_ruler(ruler_width,
             {
                 // horizontal ticks
                 translate([xPos,0,0])
-                    tick(xPos%5==0 ? large_tick_length: short_tick_length);
-                
-
+                    tick(xPos%5==0 ? ruler_length: ruler_length-ruler_length * large_vs_short_tich_ratio);
             }
         }
         
@@ -41,7 +37,8 @@ module plane_ruler(ruler_width,
                 // vertical ticks
                 rotate([90,0,0])
                     translate([xPos,0,0])
-                        tick(original_ruler_height);
+                        //tick(original_ruler_height);
+                        tick(xPos%5==0 ? original_ruler_height: original_ruler_height - original_ruler_height * large_vs_short_tich_ratio);
             }
         }
          
