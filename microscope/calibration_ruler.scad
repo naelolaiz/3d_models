@@ -1,4 +1,4 @@
-ruler_width = 40;
+ruler_width = 35;
 ruler_length = 7;
 original_ruler_height = 5;
 steps = 5;
