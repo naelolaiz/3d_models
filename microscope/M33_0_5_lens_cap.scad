@@ -190,23 +190,47 @@
           tip_height=thread_pitch, tip_min_fract=0.75);
     }
 }
+    module extrude_text(text_list_of_lines,
+                    base_height,
+                    font_size=2,
+                    font_height=0.9)
+    {
+            union() 
+            {
+                font_size = 2;
+                font_height = 0.9;
+                text = ["", "Z: 8-100X (0.12-2X)", "R: 1:17", "WD: 40-155mm", "", "", "NAEL"];
+               
+                total_text_height=len(text)*font_height*2-1;
+                
+                start_y = total_text_height;
+                for (i = [0 : len(text) - 1])
+                {
+                    mirror([180,0,0])
+                        translate([0, start_y - i*font_size*2, -font_height/2-base_height])
+                            linear_extrude(height = font_height)
+                                text(text[i], size = font_size, font = "Arial", halign="center");
+                }
+            }
 
-module camera_M33_screw()
+    }
+module camera_M33_screw(text, under_text=true)
 {
         wall_width=1;
         tolerance=0.3;
         external_diameter = 39;
         internal_diameter = 33;
-        internal_thread_height = 2.6;
-        base_height = 1.4;
+        internal_thread_height = 2.1;
+        base_height = 2;
         thread_length = 2.6;
         thread_pitch = 0.5;
         thread_diameter = internal_diameter-tolerance;
         cap_internal_diameter = external_diameter + tolerance;
         cap_external_diameter = cap_internal_diameter + wall_width*2;
         cap_height = 3.5;
-    
-    
+
+    difference()
+    {
         union()
         {
             // threaded part and base
@@ -224,5 +248,34 @@ module camera_M33_screw()
                 cylinder(h=cap_height,d=cap_internal_diameter,$fn=200);
             }
         }
-}
-camera_M33_screw();
+        
+        if(under_text)
+        {
+             extrude_text(text_list_of_lines=text,
+                base_height=base_height,
+                font_size=2,
+                font_height=0.9);
+        }
+    }
+    if(!under_text)
+    {
+        extrude_text(text_list_of_lines=text,
+                    base_height=base_height,
+                    font_size=2,
+                    font_height=0.9);
+    }
+    
+}                   
+text =["", "Z: 8-100X (0.12-2X)", "R: 1:17", "WD: 40-155mm", "", "", "NAEL"];
+
+rotate([45,-7,0])
+translate([-30,0,0])
+camera_M33_screw(text, true);
+
+rotate([45,7,0])
+translate([30,0,0])
+camera_M33_screw(text, false);
+
+
+
+
