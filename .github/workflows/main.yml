@@ -20,7 +20,7 @@ jobs:
           done
         shell: bash
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: workspace_artifacts
           path: |
@@ -42,7 +42,7 @@ jobs:
           done
         shell: bash
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: workspace_artifacts
           path: |
