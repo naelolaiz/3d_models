@@ -1,5 +1,6 @@
 # 3D models
-OpenSCAD 3D models 
+OpenSCAD 3Dmodels
+
 ## STL files 
 STL files and PNG thumbnails available in [https://naelolaiz.github.io/3d_models](https://naelolaiz.github.io/3d_models)
 ### Automatic publishing
