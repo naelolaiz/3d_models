@@ -2,9 +2,9 @@ on: [push]
 
 jobs:
   render_scad_files:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     container:
-      image: bbassett/openscad
+      image: bbassett/openscad:bookworm
     name: render_scad_files
     steps:
       - name: Checkout
