@@ -4,7 +4,7 @@ jobs:
   render_scad_files:
     runs-on: ubuntu-latest
     container:
-      image: openscad/openscad
+      image: openscad/openscad:bookworm
     name: render_scad_files
     steps:
       - name: Checkout
