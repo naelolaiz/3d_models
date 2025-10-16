@@ -3,11 +3,14 @@ $fn=300;
 phone_holder_dimensions_mm = [30,80,20];
 phone_holder_inner_size_mm = [50,60,15];
 
-screw_total_height_mm = 16;
+
 screw_threads_mm = 5;
 screw_head_height_mm = 5;
 screw_head_diameter_mm = 18;
 threads_outside_length_mm = 6;
+
+
+screw_total_height_mm = threads_outside_length_mm + screw_head_height_mm + phone_holder_dimensions_mm[2]-phone_holder_inner_size_mm[2];
 
 hole_diameter_mm = screw_threads_mm+1;
 
@@ -67,7 +70,11 @@ module holder_and_screw()
 
 holder_and_screw();
 
-base_whole_cube_size = [phone_holder_dimensions_mm[0]*4, phone_holder_dimensions_mm[1], phone_holder_dimensions_mm[2]];
+
+
+base_height = screw_total_height_mm;
+
+base_whole_cube_size = [phone_holder_dimensions_mm[0]*4, phone_holder_dimensions_mm[1], base_height];
 
 module base(base_size)
 {
