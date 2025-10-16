@@ -1,5 +1,8 @@
 $fn=300;
 
+create_final_holder = false;
+
+
 phone_holder_dimensions_mm = [30,80,20];
 phone_holder_inner_size_mm = [50,60,15];
 
@@ -64,7 +67,11 @@ module holder_and_screw()
     phone_holder(phone_holder_dimensions_mm, phone_holder_inner_size_mm, hole_diameter_mm);
     translate([0,0,-(screw_head_height_mm+threads_outside_length_mm)])
     {
-        screw(screw_total_height_mm, screw_threads_mm, screw_head_height_mm, screw_head_diameter_mm);
+    //   screw(screw_total_height_mm, screw_threads_mm, screw_head_height_mm, screw_head_diameter_mm);
+    }
+    translate([0,0,-(threads_outside_length_mm + screw_head_height_mm)/2])
+    {
+        cylinder(h=threads_outside_length_mm + screw_head_height_mm, d = screw_head_diameter_mm + 10, center=true);
     }
 }
 
