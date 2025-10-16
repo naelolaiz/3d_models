@@ -27,10 +27,6 @@ jobs:
             ${{ github.workspace }}/publish/*.stl
       - name: Update and install dependencies
         run: |
-          sed -i -e 's/deb http:\/\/deb.debian.org\/debian stable main/deb http:\/\/deb.debian.org\/debian buster main/' \
-                 -e 's/deb http:\/\/security.debian.org\/debian-security stable\/updates main/deb http:\/\/deb.debian.org\/debian-security buster\/updates main/' \
-                 -e 's/deb http:\/\/deb.debian.org\/debian stable-updates main/deb http:\/\/deb.debian.org\/debian buster-updates main/' \
-              /etc/apt/sources.list
           apt-get update -q
           apt-get install -y xvfb rsync #rsync for deploy step on github pages
       - name: create png files
