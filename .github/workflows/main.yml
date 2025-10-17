@@ -1,5 +1,6 @@
 on: [push]
-
+permissions:
+  contents: write
 jobs:
   render_scad_files:
     runs-on: ubuntu-latest
