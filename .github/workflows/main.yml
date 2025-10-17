@@ -19,10 +19,10 @@ jobs:
                fi
           done
         shell: bash
-      - name: Upload Build Artifacts
+      - name: Upload .stl artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: workspace_artifacts
+          name: stl_artifacts
           path: |
             ${{ github.workspace }}/publish/*.stl
       - name: Update and install dependencies
@@ -37,10 +37,10 @@ jobs:
               fi
           done
         shell: bash
-      - name: Upload Build Artifacts
+      - name: Upload .png Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: workspace_artifacts
+          name: png_artifacts
           path: |
             ${{ github.workspace }}/publish/*.png
       - name: Generate HTML
