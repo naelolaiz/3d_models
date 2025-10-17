@@ -19,12 +19,12 @@ jobs:
                fi
           done
         shell: bash
-      - name: Upload .stl artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: stl_artifacts
-          path: |
-            ${{ github.workspace }}/publish/*.stl
+      #- name: Upload .stl artifacts
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: stl_artifacts
+      #    path: |
+      #      ${{ github.workspace }}/publish/*.stl
       - name: Update and install dependencies
         run: |
           apt-get update -q
@@ -37,12 +37,12 @@ jobs:
               fi
           done
         shell: bash
-      - name: Upload .png Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: png_artifacts
-          path: |
-            ${{ github.workspace }}/publish/*.png
+      #- name: Upload .png Artifacts
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: png_artifacts
+      #    path: |
+      #      ${{ github.workspace }}/publish/*.png
       - name: Generate HTML
         run: |
           cd publish
@@ -64,4 +64,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./publish
+          folder: ${{ github.workspace }}/publish
