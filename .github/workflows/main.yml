@@ -28,7 +28,7 @@ jobs:
       - name: Update and install dependencies
         run: |
           apt-get update -q
-          apt-get install -y xvfb rsync #rsync for deploy step on github pages
+          apt-get install -y git xvfb rsync # git required by deploy action, rsync for deploy step on github pages
       - name: create png files
         run: >
           for f in $(find . -name "*.scad"); do
