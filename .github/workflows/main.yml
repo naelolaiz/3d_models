@@ -1,6 +1,4 @@
 on: [push]
-permissions:
-  contents: write
 jobs:
   render_scad_files:
     runs-on: ubuntu-latest
@@ -8,6 +6,10 @@ jobs:
       image: openscad/openscad:bookworm
     name: render_scad_files
     steps:
+      - name: Update and install dependencies
+        run: |
+          apt-get update -q
+          apt-get install -y git xvfb rsync # git required by deploy action, rsync for deploy step on github pages
       - name: Checkout
         uses: actions/checkout@v4
       - name: create stl files
@@ -25,10 +27,6 @@ jobs:
       #    name: stl_artifacts
       #    path: |
       #      ${{ github.workspace }}/publish/*.stl
-      - name: Update and install dependencies
-        run: |
-          apt-get update -q
-          apt-get install -y git xvfb rsync # git required by deploy action, rsync for deploy step on github pages
       - name: create png files
         run: >
           for f in $(find . -name "*.scad"); do
