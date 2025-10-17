@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: create stl files
         run: >
           mkdir publish ;
@@ -59,9 +58,10 @@ jobs:
           echo "</tr>" >> temp_row.html
           cat temp_row.html >> index.html
           echo "</table></body></html>" >> index.html
+          cd ..
         shell: bash
-
+#      - uses: actions/checkout@v4
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ${{ github.workspace }}/publish
+          folder: ./publish
